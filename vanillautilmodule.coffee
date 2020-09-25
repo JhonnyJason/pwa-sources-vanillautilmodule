@@ -1,8 +1,13 @@
 vanillautilmodule = {name: "vanillautilmodule"}
-
-#region modulesFromTheEnvironment
+############################################################
+#region printLogFunctions
+log = (arg) ->
+    if allModules.debugmodule.modulesToDebug["vanillautilmodule"]?  then console.log "[vanillautilmodule]: " + arg
+    return
+print = (arg) -> console.log(arg)
 #endregion
 
+############################################################
 #region easingsDefinition
 easings = 
     linear: (t) ->
@@ -33,23 +38,15 @@ easings =
         if t < 0.5 then 16 * t * t * t * t * t else 1 + 16 * --t * t * t * t * t
 #endregion
 
-#region printLogFunctions
-##############################################################################
-log = (arg) ->
-    if allModules.debugmodule.modulesToDebug["vanillautilmodule"]?  then console.log "[vanillautilmodule]: " + arg
-    return
-print = (arg) -> console.log(arg)
-#endregion
-##############################################################################
+############################################################
 vanillautilmodule.initialize = () ->
     log "vanillautilmodule.initialize"
     return
     
-#region internalFunctions
+############################################################
 alertScrollend = -> alert("Scroll ended!")
-#endregion
 
-#region exposedFunctions
+############################################################
 vanillautilmodule.scrollTo = (destination, duration = 400, easing = 'easeInOutQuad', callback) ->
     
     start = window.pageYOffset
@@ -76,6 +73,5 @@ vanillautilmodule.scrollTo = (destination, duration = 400, easing = 'easeInOutQu
   
     scroll()
     return
-#endregion
 
 module.exports = vanillautilmodule
