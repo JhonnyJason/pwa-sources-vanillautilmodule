@@ -74,4 +74,18 @@ vanillautilmodule.scrollTo = (destination, duration = 400, easing = 'easeInOutQu
     scroll()
     return
 
+############################################################
+vanillautilmodule.shuffleArray = (array) ->
+    currentIndex = array.length
+
+    while (0 != currentIndex)
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--
+
+        replaced = array[currentIndex]
+        array[currentIndex] = array[randomIndex]
+        array[randomIndex] = replaced
+
+    return array;
+    
 module.exports = vanillautilmodule
