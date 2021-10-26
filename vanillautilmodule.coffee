@@ -37,11 +37,6 @@ easings =
     easeInOutQuint: (t) ->
         if t < 0.5 then 16 * t * t * t * t * t else 1 + 16 * --t * t * t * t * t
 #endregion
-
-############################################################
-vanillautilmodule.initialize = () ->
-    log "vanillautilmodule.initialize"
-    return
     
 ############################################################
 alertScrollend = -> alert("Scroll ended!")
