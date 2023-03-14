@@ -38,11 +38,21 @@ easings =
 ############################################################
 export scrollTo = (destination, duration = 400, easing = 'easeInOutQuad', callback) ->
     
+    if typeof destination == "string"
+        elementId = destination
+        destination = document.getElementById(elementId)
+        if !destination? then throw new Error("Element did not exist! id: #{elementId}")
+    
+
     start = window.pageYOffset
     startTime = if 'now' of window.performance then performance.now() else (new Date).getTime()
     
     getScrollOffset = ->
-        destinationOffset = if typeof destination == 'number' then destination else destination.offsetTop
+        if typeof destination == 'number'
+            destinationOffset = destination
+        else        
+            destinationOffset = destination.getBoundingClientRect().top + window.scrollY
+            
         documentHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight)
         windowHeight = window.innerHeight or document.documentElement.clientHeight or document.getElementsByTagName('body')[0].clientHeight
         return Math.round(if documentHeight - destinationOffset < windowHeight then documentHeight - windowHeight else destinationOffset)
